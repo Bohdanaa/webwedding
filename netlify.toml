@@ -1,0 +1,2 @@
+[build]
+  command = "source /Users/user/web/venv/bin/activate && npm start"
