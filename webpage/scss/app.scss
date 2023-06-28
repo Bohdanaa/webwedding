@@ -1,0 +1,20 @@
+@import url("https://fonts.fontstorage.com/import/madetheartistscript.css");
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Mrs+Saint+Delafield&family=Nothing+You+Could+Do&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;700&display=swap');
+//helpers
+@import"./helpers/variables";
+@import './helpers/fonts.css';
+//base
+@import"./base/line";
+@import "./base/main";
+@import "./base/text";
+
+//content
+@import "./items/feedback.scss";
+@import "./items/dresscode.scss";
+@import './items/media';
+@import "./items/content.scss";
+@import "./items/container.scss";
+@import "./items/programa.scss";
+@import "./items/organization.scss";
