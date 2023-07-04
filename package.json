@@ -30,7 +30,7 @@
   "dependencies": {
     "netlify-cli": "^15.0.2",
     "python": "^0.0.4",
-    "python-telegram-bot": "^13.7.0",
-    "flask": "^2.3.2"
+    "python-telegram-bot": "file:./venv/lib/python_telegram_bot-13.7.dist-info",
+    "flask": "file:./venv/lib/flask"
   }
 }
