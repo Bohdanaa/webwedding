@@ -3,7 +3,8 @@
     "python.autoComplete.extraPaths": [
     
     ],
-    "python.analysis.extraPaths": []
+    "python.analysis.extraPaths": [],
+    "git.ignoreLimitWarning": true
    
 
 }
