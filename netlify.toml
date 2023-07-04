@@ -3,5 +3,5 @@
   publish = "dist"
 
 [dev]
-  command = "npm start"
+  command = "source venv/bin/activate && npm start"
   publish = "dist"
