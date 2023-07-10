@@ -4,9 +4,9 @@
   "description": "My project description",
   "main": "main.py",
   "scripts": {
-    "start": "webpack --mode development",
+    "start": "webpack --mode development && python3 main.py",
     "build": "webpack --mode production",
-    "serve": "python main.py"
+    "serve": "python3 main.py"
   },
   "author": "",
   "devDependencies": {
