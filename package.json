@@ -14,23 +14,29 @@
     "browser-sync": "^2.29.3",
     "browser-sync-webpack-plugin": "^2.3.0",
     "copy-webpack-plugin": "^11.0.0",
+    "css-loader": "^6.8.1",
     "html-loader": "^4.2.0",
     "html-webpack-plugin": "^5.5.3",
     "lodash": "^4.17.21",
+    "node-telegram-bot-api": "^0.61.0",
     "postcss": "^8.4.24",
     "resolve-url-loader": "^5.0.0",
     "sass": "^1.63.6",
     "sass-loader": "^13.3.2",
+    "style-loader": "^3.3.3",
     "webpack": "^5.88.0",
     "webpack-cli": "^5.1.4",
-    "style-loader": "^3.3.3",
-    "css-loader": "^6.8.1",
-    "node-telegram-bot-api": "^0.61.0"
+    "@babel/core": "^7.22.9",
+    "@babel/preset-env": "^7.22.9",
+    "babel-loader": "^9.1.3",
+    "mini-css-extract-plugin": "^2.7.6",
+    "webpack-dev-server": "^4.15.1"
   },
-  "dependencies": {
+  "dependencies": { 
+    "flask": "file:./venv/lib/flask",
     "netlify-cli": "^15.0.2",
     "python": "^0.0.4",
-    "python-telegram-bot": "file:./venv/lib/python_telegram_bot-13.7.dist-info",
-    "flask": "file:./venv/lib/flask"
+    "python-telegram-bot": "file:./venv/lib/python_telegram_bot-13.7.dist-info"
+    
   }
 }
