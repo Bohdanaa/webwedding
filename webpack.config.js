@@ -3,10 +3,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-  entry: './webpage/js/index.js', // Встановіть свій власний вхідний файл
+  entry: './webpage/js/index.js', 
   output: {
-    path: path.resolve(__dirname, 'dist'), // Встановіть папку виводу
-    filename: 'script.js', // Встановіть назву виводного файлу
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'script.js', 
   },
   module: {
     rules: [
@@ -14,7 +14,7 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader', // Використовуємо Babel для транспіляції коду ES6
+          loader: 'babel-loader', 
           options: {
             presets: ['@babel/preset-env'],
           },
@@ -32,10 +32,10 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './webpage/index.html', // Шаблон для головної HTML сторінки
+      template: './webpage/index.html', 
     }),
     new MiniCssExtractPlugin({
-      filename: 'styles.css', // Назва виводного CSS файлу
+      filename: 'styles.css', 
     }),
   ],
   devServer: {
