@@ -1,3 +1,6 @@
 flask==2.1.1
 fastapi==0.100.0
 requests==2.31.0
+openpyxl==3.1.2
+telegram==13.7
+python==3.11.4

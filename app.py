@@ -1,2 +1,2 @@
-import requests
-print(f"{requests.__version__}")
+import asyncio
+print(f"{asyncio.__version__}")
