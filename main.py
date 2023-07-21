@@ -8,7 +8,8 @@ from openpyxl.styles import Font
 from telegram import Bot, Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Updater, CallbackQueryHandler, CommandHandler,CallbackContext
 import asyncio
-
+import os
+import uvicorn
 
 
 
@@ -251,7 +252,7 @@ dispatcher.add_handler(CallbackQueryHandler(handle_button_click, pattern='get_fi
 dispatcher.add_handler(CallbackQueryHandler(handle_sorted_button_click, pattern='sort_file'))
 dispatcher.add_handler(CallbackQueryHandler(handle_calculator_button_click,pattern='calculator_file'))
 if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run(app, host="0.0.0.0", port=port)
    
    
