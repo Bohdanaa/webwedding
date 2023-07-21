@@ -252,7 +252,8 @@ dispatcher.add_handler(CallbackQueryHandler(handle_button_click, pattern='get_fi
 dispatcher.add_handler(CallbackQueryHandler(handle_sorted_button_click, pattern='sort_file'))
 dispatcher.add_handler(CallbackQueryHandler(handle_calculator_button_click,pattern='calculator_file'))
 if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 8000))
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=port)
    
    
