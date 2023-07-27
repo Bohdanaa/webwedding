@@ -15,7 +15,7 @@ form.addEventListener('submit', (event) => {
 	const car = Array.from(document.querySelectorAll('input[name="car"]:checked')).map((checkbox) => checkbox.value);
 
 	// Відправити дані на сервер
-	fetch('https://wedding-my.netlify.app/submit', {
+	fetch('http://127.0.0.1:8000/submit', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',

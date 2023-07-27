@@ -11,7 +11,7 @@ from telegram.ext import Updater, CallbackQueryHandler, CommandHandler,CallbackC
 import asyncio
 import os
 app = FastAPI()
-@app.post("/")
+@app.post("/submit")
 async def submit_data(
     name: str = Form(...),
     presence: str = Form(...),
@@ -45,7 +45,7 @@ dispatcher = updater.dispatcher
 
 
 # Налаштування статичних файлів
-app.mount("/webpage", StaticFiles(directory="webpage"), name="static")
+app.mount("/dist", StaticFiles(directory="dist"), name="static")
 
 data=[]
 
@@ -213,12 +213,12 @@ def clear_excel_data():
 
 @app.get("/", response_class=HTMLResponse)
 async def index(request: Request):
-    with open("webpage/index.html", "r") as file:
+    with open("dist/index.html", "r") as file:
         html_content = file.read()
     return HTMLResponse(content=html_content, status_code=200)
 
 
-@app.post("/")
+@app.post("/submit")
 async def submit(request: Request):
    
     form = await request.form()
