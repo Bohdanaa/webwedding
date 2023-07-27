@@ -1,4 +1,5 @@
 from fastapi import FastAPI, Request, Form
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse, FileResponse
 import requests
 from fastapi.staticfiles import StaticFiles
@@ -27,7 +28,13 @@ async def submit_data(
 
 # ... решта вашого коду
 
-
+# Налаштування CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Тут ви можете вказати список доменів, які дозволені для запитів. Якщо ви хочете дозволити з будь-якого домену, залиште ["*"]
+    allow_methods=["*"],  # Дозволяємо будь-які HTTP-методи (GET, POST, PUT, DELETE і т.д.)
+    allow_headers=["*"],  # Дозволяємо будь-які HTTP-заголовки
+)
 
 
 templates = Jinja2Templates(directory="webpage")
