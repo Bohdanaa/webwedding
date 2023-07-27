@@ -11,30 +11,14 @@ from telegram.ext import Updater, CallbackQueryHandler, CommandHandler,CallbackC
 import asyncio
 import os
 app = FastAPI()
-@app.post("/submit")
-async def submit_data(
-    name: str = Form(...),
-    presence: str = Form(...),
-    drinks: list = Form(...),
-    car: list = Form(...)
-):
-    await asyncio.sleep(1)
-    data.append({'name': name, 'presence': presence, 'drinks': drinks, 'car': car})
-    create_excel_file(data)
-    create_sorted_excel_file(data)
-    create_calculator_excel_file(data)
-    send_telegram_message(name, presence, drinks, car)
-    return templates.TemplateResponse("index.html", {"request": request, "message": "Повідомлення успішно відправлено"})
-
-# ... решта вашого коду
-
-# Налаштування CORS
+# Add CORS middleware to allow requests from any origin
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Тут ви можете вказати список доменів, які дозволені для запитів. Якщо ви хочете дозволити з будь-якого домену, залиште ["*"]
-    allow_methods=["*"],  # Дозволяємо будь-які HTTP-методи (GET, POST, PUT, DELETE і т.д.)
-    allow_headers=["*"],  # Дозволяємо будь-які HTTP-заголовки
+    allow_origins=["*"],  # Set this to a list of allowed origins or ["*"] to allow all origins
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
+
 
 
 templates = Jinja2Templates(directory="webpage")
