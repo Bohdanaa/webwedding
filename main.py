@@ -14,12 +14,10 @@ app = FastAPI()
 # Add CORS middleware to allow requests from any origin
 app.add_middleware(
     CORSMiddleware,
-     allow_origins=["https://main--wedding-my.netlify.app"],  # Set this to a list of allowed origins or ["*"] to allow all origins
+    allow_origins=["https://main--wedding-my.netlify.app"],
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-
 
 templates = Jinja2Templates(directory="dist")
 bot_token = "6139494128:AAFF81pUP18MzObbGas48aBnlQnxn_9C42U"
@@ -218,10 +216,10 @@ async def submit(request: Request):
     
 
     send_telegram_message(name, presence, drinks,car)
-    
-
-    return templates.TemplateResponse("index.html", {"request": request, "message": "Повідомлення успішно відправлено"})
-
+    response = templates.TemplateResponse("index.html", {"request": request, "message": "Повідомлення успішно відправлено"})
+    # Додайте заголовок для CORS
+    response.headers['Access-Control-Allow-Origin'] = 'https://main--wedding-my.netlify.app'
+    return response
 
 @app.get("/get-file")
 def get_file():

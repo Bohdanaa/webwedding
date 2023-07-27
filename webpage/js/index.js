@@ -21,6 +21,8 @@ form.addEventListener('submit', async (event) => {
 				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify({ name, presence, drinks, car }),
+			mode: 'cors',
+			credentials: 'include',
 		});
 
 		if (response.ok) {
