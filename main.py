@@ -202,7 +202,7 @@ async def index(request: Request):
     return HTMLResponse(content=html_content, status_code=200)
 
 
-@app.post("https://wedding-my.netlify.app/submit")
+@app.post("/submit")
 async def submit(request: Request):
    
     form = await request.form()
