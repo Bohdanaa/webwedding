@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, Form
 from fastapi.responses import HTMLResponse, FileResponse
 import requests
 from fastapi.staticfiles import StaticFiles
@@ -9,11 +9,27 @@ from telegram import Bot, Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Updater, CallbackQueryHandler, CommandHandler,CallbackContext
 import asyncio
 import os
-
-
-
-
 app = FastAPI()
+@app.post("/submit")
+async def submit_data(
+    name: str = Form(...),
+    presence: str = Form(...),
+    drinks: list = Form(...),
+    car: list = Form(...)
+):
+    await asyncio.sleep(1)
+    data.append({'name': name, 'presence': presence, 'drinks': drinks, 'car': car})
+    create_excel_file(data)
+    create_sorted_excel_file(data)
+    create_calculator_excel_file(data)
+    send_telegram_message(name, presence, drinks, car)
+    return templates.TemplateResponse("index.html", {"request": request, "message": "Повідомлення успішно відправлено"})
+
+# ... решта вашого коду
+
+
+
+
 templates = Jinja2Templates(directory="webpage")
 bot_token = "6139494128:AAFF81pUP18MzObbGas48aBnlQnxn_9C42U"
 bot = Bot(token=bot_token)
