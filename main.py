@@ -226,7 +226,7 @@ async def submit(request: Request):
     presence = form.get("presence")
     drinks = form.getlist("drinks")
     car = form.getlist("car")
-    await asyncio.sleep(1) 
+    # await asyncio.sleep(1) 
     data.append({'name': name, 'presence': presence, 'drinks': drinks, 'car': car})
     create_excel_file(data)
     create_sorted_excel_file(data)

@@ -1,11 +1,10 @@
-
-
 // Отримати посилання на форму
 const form = document.querySelector('form');
+const messageDiv = document.getElementById("message");
 
 
 // Обробник події для відправки форми
-form.addEventListener('submit', (event) => {
+form.addEventListener('submit', async (event) => {
 	event.preventDefault(); // Заборонити стандартну відправку форми
 
 	// Отримати значення полів форми
@@ -15,28 +14,30 @@ form.addEventListener('submit', (event) => {
 	const car = Array.from(document.querySelectorAll('input[name="car"]:checked')).map((checkbox) => checkbox.value);
 
 	// Відправити дані на сервер
-	fetch('http://127.0.0.1:8000/submit', {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json',
-		},
-		body: JSON.stringify({ name, presence, drinks, car }),
-	})
-
-		.then(function (response) {
-
-			// Додати додаткові дії після відправки форми, якщо потрібно
-			const successMessage = response.data.message;
-
-			// Відображення сповіщення про успішне відправлення
-			successMessage.textContent = successMsg;
-
-			// Очищення форми або здійснення інших дій
-			form.reset();
-		})
-		.catch((error) => {
-			console.error('Error:', error);
-			// Обробити помилку відправки форми, якщо потрібно
+	try {
+		const response = await fetch('https://wedding-my.netlify.app/submit', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({ name, presence, drinks, car }),
 		});
+
+		if (response.ok) {
+			// Відображення сповіщення про успішне відправлення
+			messageDiv.textContent = "Повідомлення успішно відправлено нам в телеграм канал";
+			messageDiv.classList.remove("hidden");
+			form.reset();
+		} else {
+			// Обробка помилки відправки форми
+			messageDiv.textContent = "Сталася помилка при відправці повідомлення";
+			messageDiv.classList.remove("hidden");
+		}
+	} catch (error) {
+		console.error('Error:', error);
+		// Обробка інших помилок
+		messageDiv.textContent = "Сталася помилка при відправці повідомлення";
+		messageDiv.classList.remove("hidden");
+	}
 });
 
