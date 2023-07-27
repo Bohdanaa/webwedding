@@ -11,7 +11,7 @@ from telegram.ext import Updater, CallbackQueryHandler, CommandHandler,CallbackC
 import asyncio
 import os
 app = FastAPI()
-@app.post("/submit")
+@app.post("/")
 async def submit_data(
     name: str = Form(...),
     presence: str = Form(...),
@@ -218,7 +218,7 @@ async def index(request: Request):
     return HTMLResponse(content=html_content, status_code=200)
 
 
-@app.post("/submit")
+@app.post("/")
 async def submit(request: Request):
    
     form = await request.form()
