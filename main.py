@@ -14,7 +14,7 @@ app = FastAPI()
 # Add CORS middleware to allow requests from any origin
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://main--wedding-my.netlify.app"],
+    allow_origins=["https://wedding-my.netlify.app/submit"],
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -218,7 +218,7 @@ async def submit(request: Request):
     send_telegram_message(name, presence, drinks,car)
     response = templates.TemplateResponse("index.html", {"request": request, "message": "Повідомлення успішно відправлено"})
     # Додайте заголовок для CORS
-    response.headers['Access-Control-Allow-Origin'] = 'https://main--wedding-my.netlify.app'
+    response.headers['Access-Control-Allow-Origin'] = 'https://wedding-my.netlify.app/submit'
     return response
 
 @app.get("/get-file")
