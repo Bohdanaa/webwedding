@@ -1,0 +1,48 @@
+.title{
+    font-size: 30px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    &-center{
+        text-align: center;
+    }
+    &-uppercase{
+        text-transform: uppercase;
+    }
+    &-margin{
+        margin-top: 15px;
+
+    }
+
+}
+.text{
+    &-small{
+        font-size: 12px;
+    }
+    &-start{
+        margin-bottom: 30px;
+    }
+    &-wrap-center{
+        flex-wrap: wrap;
+        text-align: center;
+
+    }
+    &-bold{
+        font-style: normal;
+        font-weight: bold;
+        font-size: 26px;
+    }
+    &-italic{
+        font-style: italic;
+        font-size: 16px;
+    }
+    &-title{
+        font-size: 25px;
+        font-style: italic;
+    }
+    &-margin-top{
+        margin-top: 20px;
+    }
+    &-size-20{
+        font-size: 20px;
+    }
+}
