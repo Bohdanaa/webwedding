@@ -14,7 +14,7 @@ app = FastAPI()
 # Add CORS middleware to allow requests from any origin
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Set this to a list of allowed origins or ["*"] to allow all origins
+     allow_origins=["https://main--wedding-my.netlify.app"],  # Set this to a list of allowed origins or ["*"] to allow all origins
     allow_methods=["*"],
     allow_headers=["*"],
 )
