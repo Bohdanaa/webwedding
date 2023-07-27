@@ -21,7 +21,7 @@ app.add_middleware(
 
 
 
-templates = Jinja2Templates(directory="webpage")
+templates = Jinja2Templates(directory="dist")
 bot_token = "6139494128:AAFF81pUP18MzObbGas48aBnlQnxn_9C42U"
 bot = Bot(token=bot_token)
 updater = Updater(token=bot_token, use_context=True)
@@ -202,7 +202,7 @@ async def index(request: Request):
     return HTMLResponse(content=html_content, status_code=200)
 
 
-@app.post("/submit")
+@app.post("https://wedding-my.netlify.app/submit")
 async def submit(request: Request):
    
     form = await request.form()
