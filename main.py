@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Request, Form
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse, FileResponse
 import requests
@@ -12,7 +12,7 @@ import asyncio
 import os
 
 app = FastAPI()
-# Add CORS middleware to allow requests from any origin
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -26,30 +26,23 @@ bot = Bot(token=bot_token)
 updater = Updater(token=bot_token, use_context=True)
 dispatcher = updater.dispatcher
 
-
-# Налаштування статичних файлів
 app.mount("/dist", StaticFiles(directory="dist"), name="static")
-
 data=[]
-
+def start(update: Update, context: CallbackContext):
+    chat_id = update.effective_chat.id
+    response_message = "Привіт! Я бот для отримання даних."
+    context.bot.send_message(chat_id=chat_id, text=response_message)
+    
 def send_telegram_message(name: str, presence: str, drinks: list, car:list):
     message = f"Імя: {name}\nПрисутність: {presence}\nНапої: {', '.join(drinks)}\nДоїзд: {', '.join(car)}"
-
     #bot_token = "6139494128:AAFF81pUP18MzObbGas48aBnlQnxn_9C42U"
     chat_id = "500842187"
-
     url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
     data = {"chat_id": chat_id, "text": message}
-    #excel
     keyboard = InlineKeyboardMarkup([[InlineKeyboardButton("Отримати Excel файл", callback_data="get_file")],
                                  [InlineKeyboardButton("Отримати відсортований Excel файл", callback_data="sort_file")],
                                  [InlineKeyboardButton("Отримати підрахунок",callback_data="calculator_file")]])
-
-  
-    #noexcel
-
     response = requests.post(url, json=data)
-
     bot.send_message(chat_id=chat_id, text=message, reply_markup=keyboard)
     return response.json()
 def create_excel_file(data):
@@ -77,15 +70,6 @@ def create_excel_file(data):
 
    
     print('Файл "data.xlsx" створено/оновлено успішно.')
-
-# Create excel
-def start(update: Update, context: CallbackContext):
-    chat_id = update.effective_chat.id
-    response_message = "Привіт! Я бот для отримання даних."
-    context.bot.send_message(chat_id=chat_id, text=response_message)
-
-
-
 def create_sorted_excel_file(data):
     wb = Workbook()
     sheet = wb.active
@@ -218,14 +202,11 @@ async def submit(request: Request):
 
     send_telegram_message(name, presence, drinks,car)
     response = templates.TemplateResponse("index.html", {"request": request, "message": "Повідомлення успішно відправлено"})
-    # Додайте заголовок для CORS
-    response.headers['Access-Control-Allow-Origin'] = 'https://wedding-my.netlify.app/submit'
     return response
 
 @app.get("/get-file")
 def get_file():
     return FileResponse("data.xlsx", filename="data.xlsx", media_type="application/octet-stream")
-
 
 @app.get("/get-sorted-file")
 def get_sorted_file():
@@ -247,12 +228,8 @@ def handle_calculator_button_click(update: Update, context: CallbackContext):
     chat_id = update.callback_query.message.chat_id
     bot.send_document(chat_id=chat_id, document=open('calculator_data.xlsx', 'rb'))
 
-
-
-
 start_handler = CommandHandler('start', start)
 dispatcher.add_handler(start_handler)
-
 updater.start_polling()
 dispatcher.add_handler(CallbackQueryHandler(handle_button_click, pattern='get_file'))
 dispatcher.add_handler(CallbackQueryHandler(handle_sorted_button_click, pattern='sort_file'))
