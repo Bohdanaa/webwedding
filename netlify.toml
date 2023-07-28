@@ -1,5 +1,5 @@
 [build]
-  command = "source venv/bin/activate && npm run build && uvicorn main:app --host 0.0.0.0 --port 8000"
+  command = "source venv/bin/activate && npm run build && uvicorn main:app --host 0.0.0.0 --port $PORT"
   publish = "dist"
 
 [dev]
