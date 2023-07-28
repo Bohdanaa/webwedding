@@ -10,10 +10,15 @@ from telegram import Bot, Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Updater, CallbackQueryHandler, CommandHandler,CallbackContext
 import asyncio
 import os
-from flask_cors import CORS
 
 app = FastAPI()
-CORS(app)
+# Add CORS middleware to allow requests from any origin
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 templates = Jinja2Templates(directory="dist")
 bot_token = "6139494128:AAFF81pUP18MzObbGas48aBnlQnxn_9C42U"
@@ -23,7 +28,7 @@ dispatcher = updater.dispatcher
 
 
 # Налаштування статичних файлів
-#app.mount("/dist", StaticFiles(directory="dist"), name="static")
+app.mount("/dist", StaticFiles(directory="dist"), name="static")
 
 data=[]
 
@@ -196,7 +201,7 @@ async def index(request: Request):
     return HTMLResponse(content=html_content, status_code=200)
 
 
-@app.post("/submit", methods=['POST'])
+@app.post("/submit")
 async def submit(request: Request):
    
     form = await request.form()
@@ -253,10 +258,8 @@ dispatcher.add_handler(CallbackQueryHandler(handle_button_click, pattern='get_fi
 dispatcher.add_handler(CallbackQueryHandler(handle_sorted_button_click, pattern='sort_file'))
 dispatcher.add_handler(CallbackQueryHandler(handle_calculator_button_click,pattern='calculator_file'))
 if __name__ == "__main__":
-    #ne
-    app.run()
-    # port = int(os.environ.get("PORT", 8000))
-    # import uvicorn
-    # uvicorn.run(app, host="0.0.0.0", port=port)
+    port = int(os.environ.get("PORT", 8000))
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=port)
    
    
