@@ -35,7 +35,7 @@ data=[]
 def send_telegram_message(name: str, presence: str, drinks: list, car:list):
     message = f"Імя: {name}\nПрисутність: {presence}\nНапої: {', '.join(drinks)}\nДоїзд: {', '.join(car)}"
 
-    bot_token = "6139494128:AAFF81pUP18MzObbGas48aBnlQnxn_9C42U"
+    #bot_token = "6139494128:AAFF81pUP18MzObbGas48aBnlQnxn_9C42U"
     chat_id = "500842187"
 
     url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
