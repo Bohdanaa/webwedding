@@ -1,5 +1,5 @@
 [build]
-  command = "source venv/bin/activate && npm run build && npm run serve"
+  command = "source venv/bin/activate && npm run build "
   publish = "dist"
 
 [dev]
