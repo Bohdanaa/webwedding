@@ -15,7 +15,7 @@ form.addEventListener('submit', async (event) => {
 
 	// Відправити дані на сервер
 	try {
-		const response = await fetch('https://wedding-my.netlify.app/submit', {
+		const response = await fetch('/submit', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
