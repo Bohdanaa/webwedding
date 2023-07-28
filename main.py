@@ -14,7 +14,7 @@ app = FastAPI()
 # Add CORS middleware to allow requests from any origin
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://wedding-my.netlify.app/submit"],
+    allow_origins=["*"],
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -230,7 +230,7 @@ def get_file():
 def get_sorted_file():
     return FileResponse("sorted_data.xlsx", filename="sorted_data.xlsx", media_type="application/octet-stream")
 
-@app.get("/get-sorted-file")
+@app.get("/get-calculator-file")
 def get_calculator_file():
     return FileResponse("calculator_data.xlsx", filename="calculator_data.xlsx", media_type="application/octet-stream")
 
