@@ -13,7 +13,7 @@ form.addEventListener('submit', async (event) => {
 	const drinks = Array.from(document.querySelectorAll('input[name="drinks"]:checked')).map((checkbox) => checkbox.value);
 	const car = Array.from(document.querySelectorAll('input[name="car"]:checked')).map((checkbox) => checkbox.value);
 
-	const herokuURL = 'https://python-server1.herokuapp.com/submit';
+	const herokuURL = 'https://python-server1-6c32169bb599.herokuapp.com/submit';
 	// Відправити дані на сервер
 	try {
 		const response = await fetch(herokuURL, {
