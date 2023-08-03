@@ -9,7 +9,7 @@
 
 [[redirects]]
   from = "/api/submit"  # Ваш шлях, за яким буде доступна функція
-  to = "/.netlify/functions/telegram"  # Шлях до вашої функції на сервері Netlify
+  to = "/.netlify/functions/main"  # Шлях до вашої функції на сервері Netlify
   status = 200
 
 
