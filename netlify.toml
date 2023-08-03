@@ -5,3 +5,6 @@
 [dev]
   command = "source venv/bin/activate && npm run serve"
   publish = "dist"
+[functions]
+  directory = "netlify/functions"
+
