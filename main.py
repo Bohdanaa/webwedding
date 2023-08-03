@@ -8,8 +8,8 @@ from openpyxl import Workbook, load_workbook
 from openpyxl.styles import Font
 from telegram import Bot, Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Updater, CallbackQueryHandler, CommandHandler,CallbackContext
-import asyncio
 import os
+
 
 app = FastAPI()
 
