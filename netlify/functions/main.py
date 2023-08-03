@@ -9,6 +9,7 @@ from openpyxl.styles import Font
 from telegram import Bot, Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Updater, CallbackQueryHandler, CommandHandler,CallbackContext
 import os
+import json
 
 
 app = FastAPI()
@@ -199,7 +200,7 @@ async def submit(request: Request):
     create_sorted_excel_file(data)
     create_calculator_excel_file(data)
     send_telegram_message(name, presence, drinks,car)
-    return {"request": request, "message": "Повідомлення успішно відправлено"}
+    return json.dumps({"request": request, "message": "Повідомлення успішно відправлено"})
     # response = templates.TemplateResponse("index.html", {"request": request, "message": "Повідомлення успішно відправлено"})
     # return response
 

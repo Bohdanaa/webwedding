@@ -1,10 +1,15 @@
 [build]
   command = "source venv/bin/activate && npm run build "
   publish = "dist"
+  functions = "netlify/functions"
 
 [dev]
   command = "source venv/bin/activate && npm run serve"
   publish = "dist"
-[functions]
-  directory = "netlify/functions"
+
+[[redirects]]
+  from = "/api/submit"  # Ваш шлях, за яким буде доступна функція
+  to = "/.netlify/functions/telegram"  # Шлях до вашої функції на сервері Netlify
+  status = 200
+
 
