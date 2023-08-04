@@ -8,6 +8,7 @@ module.exports = {
 		index: './webpage/js/index.js',
 		input: './webpage/js/input.js',
 		message: './webpage/js/message.js',
+		post: './webpage/js/post',
 	},
 	output: {
 		path: path.resolve(__dirname, 'dist'),
