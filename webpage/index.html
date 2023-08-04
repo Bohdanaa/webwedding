@@ -185,7 +185,7 @@
 					<div class="feedback__container-forma">
 						<h1 class="feedback__title title">Будь ласка підтвердіть свою присутність</h1>
 
-						<form action="/api/submit" method="post" data-netlify="true">
+						<form name="webhook" action="/api/index.py" method="post" data-netlify="true">
 
 							<div class="feedback__name">
 
@@ -272,6 +272,7 @@
 			</section>
 		</div>
 	</main>
+	<script src="js/post.js"></script>
 	<script>
 		function handlePresenceChange(value) {
 			const formsToHide = document.getElementsByClassName("feedback__form-to-hide");
