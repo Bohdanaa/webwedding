@@ -13,27 +13,17 @@ form.addEventListener('submit', async (e) => {
 	const car = Array.from(document.querySelectorAll('input[name="car"]:checked')).map((checkbox) => checkbox.value);
 
 
-	try {
-		const response = await axios.post(' https://tele-py-peach.vercel.app/submit', {
-			name,
-			presence,
-			drinks,
-			car
-		});
-		if (response.ok) {
-			// Відображення сповіщення про успішне відправлення
-			messageDiv.textContent = "Повідомлення успішно відправлено нам в телеграм канал";
-			messageDiv.classList.remove("hidden");
-			form.reset();
-		} else {
-			// Обробка помилки відправки форми
-			messageDiv.textContent = "Сталася помилка при відправці повідомлення";
-			messageDiv.classList.remove("hidden");
-		}
-	} catch (error) {
-		console.error('Error:', error);
-		// Обробка інших помилок
-		messageDiv.textContent = "Сталася помилка при відправці повідомлення";
-		messageDiv.classList.remove("hidden");
-	}
+	const formData = new FormData();
+	formData.append("name", name);
+	formData.append("presence", presence);
+	formData.append("drinks", drinks);
+	formData.append("car", car);
+
+	const response = await fetch("/api/submit", {
+		method: "POST",
+		body: formData
+	});
+
+	const result = await response.json();
+	alert(result.message);
 });

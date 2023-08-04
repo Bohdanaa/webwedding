@@ -1,14 +1,12 @@
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import HTMLResponse, FileResponse,JSONResponse
+from fastapi.responses import  FileResponse
 import requests
-from fastapi.staticfiles import StaticFiles
-from fastapi.templating import Jinja2Templates
 from openpyxl import Workbook, load_workbook
 from openpyxl.styles import Font
 from telegram import Bot, Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Updater, CallbackQueryHandler, CommandHandler,CallbackContext
-import os
+from pydantic import BaseModel
 
 
 
@@ -21,13 +19,13 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-templates = Jinja2Templates(directory="dist")
+# templates = Jinja2Templates(directory="dist")
 bot_token = "6139494128:AAFF81pUP18MzObbGas48aBnlQnxn_9C42U"
 bot = Bot(token=bot_token)
 updater = Updater(token=bot_token, use_context=True)
 dispatcher = updater.dispatcher
 
-app.mount("/dist", StaticFiles(directory="dist"), name="static")
+# app.mount("/dist", StaticFiles(directory="dist"), name="static")
 data=[]
 def start(update: Update, context: CallbackContext):
     chat_id = update.effective_chat.id
@@ -179,16 +177,15 @@ def clear_excel_data():
 
 
 
-@app.get("/", response_class=HTMLResponse)
-async def index(request: Request):
-    with open("dist/index.html", "r") as file:
-        html_content = file.read()
-    return HTMLResponse(content=html_content, status_code=200)
+# @app.get("/", response_class=HTMLResponse)
+# async def index(request: Request):
+#     with open("dist/index.html", "r") as file:
+#         html_content = file.read()
+#     return HTMLResponse(content=html_content, status_code=200)
 
-
+    
 @app.post("/submit")
 async def submit(request: Request):
-   
     form = await request.form()
     name = form.get("name")
     presence = form.get("presence")
@@ -200,8 +197,7 @@ async def submit(request: Request):
     create_sorted_excel_file(data)
     create_calculator_excel_file(data)
     send_telegram_message(name, presence, drinks,car)
-    response = templates.TemplateResponse("index.html", {"request": request, "message": "Повідомлення успішно відправлено"})
-    return response
+    return {"request": request, "message": "Повідомлення успішно відправлено"}
 
 @app.get("/get-file")
 def get_file():
@@ -233,9 +229,9 @@ updater.start_polling()
 dispatcher.add_handler(CallbackQueryHandler(handle_button_click, pattern='get_file'))
 dispatcher.add_handler(CallbackQueryHandler(handle_sorted_button_click, pattern='sort_file'))
 dispatcher.add_handler(CallbackQueryHandler(handle_calculator_button_click,pattern='calculator_file'))
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 8000))
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=port)
+# if __name__ == "__main__":
+#     port = int(os.environ.get("PORT", 8000))
+#     import uvicorn
+#     uvicorn.run(app, host="0.0.0.0", port=port)
    
    
