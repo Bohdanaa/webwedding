@@ -1,14 +1,49 @@
 {
+	"version": 2,
 	"builds": [
 		{
+			"src": "dist/**/*",
+			"use": "@vercel/static"
+		},
+		{
 			"src": "api/main.py",
-			"use": "@vercel/python"
+			"use": "@now/python"
 		}
 	],
 	"routes": [
 		{
 			"src": "/(.*)",
-			"dest": "api/main.py"
+			"dest": "/dist/$1"
+		},
+		{
+			"src": "/api/(.*)",
+			"dest": "/api/main.py"
+		}
+	],
+	"env": {
+		"TELEGRAM_BOT_TOKEN": "6139494128:AAFF81pUP18MzObbGas48aBnlQnxn_9C42U"
+	},
+	"public": true,
+	"regions": [
+		"us-east-1"
+	],
+	"headers": [
+		{
+			"source": "https://effervescent-froyo-c010f1.netlify.app/",
+			"headers": [
+				{
+					"key": "Access-Control-Allow-Origin",
+					"value": "*"
+				},
+				{
+					"key": "Access-Control-Allow-Methods",
+					"value": "GET, POST, OPTIONS, PUT, DELETE"
+				},
+				{
+					"key": "Access-Control-Allow-Headers",
+					"value": "*"
+				}
+			]
 		}
 	]
 }
