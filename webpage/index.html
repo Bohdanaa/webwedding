@@ -6,9 +6,9 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Запрошення</title>
-	<link rel="icon" href="/img/logo.png" />
-	<link rel="stylesheet" type="text/css" href="/css/style.css">
-	<link rel="stylesheet" type="text/css" href="/scss/app.css">
+	<link rel="icon" href="img/logo.png" />
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="scss/app.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 </head>
 
@@ -185,7 +185,8 @@
 					<div class="feedback__container-forma">
 						<h1 class="feedback__title title">Будь ласка підтвердіть свою присутність</h1>
 
-						<form name="webhook" action="/api/main.py" method="post" data-netlify="true">
+						<form action="https://new-bohdanaa.vercel.app/submit" method="post"
+							onsubmit="submitForm(event)">
 
 							<div class="feedback__name">
 
@@ -272,7 +273,8 @@
 			</section>
 		</div>
 	</main>
-	<script src="/js/post.js"></script>
+	<script src="js/telegram.js"></script>
+	<!-- <script src="/js/post.js"></script> -->
 	<script>
 		function handlePresenceChange(value) {
 			const formsToHide = document.getElementsByClassName("feedback__form-to-hide");
@@ -297,7 +299,7 @@
 	</script>
 
 	<!-- <script src="js/message.js"></script> -->
-	<script src="/js/input.js"></script>
+	<script src="js/input.js"></script>
 	<!-- <script src="dist/js/index.js"></script> -->
 
 	<!-- <script src="/webpage/js/index.js"></script> -->
