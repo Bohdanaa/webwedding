@@ -5,7 +5,7 @@ form.addEventListener("submit", async (event) => {
 	event.preventDefault();
 
 	const formData = new FormData(form);
-	const serverUrl = "https://new-bohdanaa.vercel.app/submit";
+	const serverUrl = "https://ne-bohdanaa.vercel.app/submit";
 
 	const response = await fetch(serverUrl, {
 		method: "POST",
