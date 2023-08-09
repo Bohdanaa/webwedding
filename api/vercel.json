@@ -1,15 +1,31 @@
 {
-  "devCommand": "uvicorn main:app --host 0.0.0.0 --port 3000",
-  "builds": [
-    {
-      "src": "api/index.py",
-      "use": "@vercel/python"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "api/index.py"
-    }
-  ]
+	"devCommand": "uvicorn main:app --host 0.0.0.0 --port 8000",
+	"builds": [
+		{
+			"src": "api/index.py",
+			"use": "@vercel/python"
+		}
+	],
+	"routes": [
+		{
+			"src": "/api/(.*)",
+			"dest": "api/index.py"
+		},
+		{
+			"src": "/css/(.*)",
+			"dest": "webpage/css/$1"
+		},
+		{
+			"src": "/js/(.*)",
+			"dest": "webpage/js/$1"
+		},
+		{
+			"src": "/img/(.*)",
+			"dest": "webpage/img/$1"
+		},
+		{
+			"src": "/(.*)",
+			"dest": "webpage/$1"
+		}
+	]
 }

@@ -5,10 +5,11 @@ form.addEventListener("submit", async (event) => {
 	event.preventDefault();
 
 	const formData = new FormData(form);
-	const serverUrl = "https://ne-bohdanaa.vercel.app/submit";
+	const serverUrl = "https://pythontelegram-1-d8327046.deta.app/submit";
 
 	const response = await fetch(serverUrl, {
 		method: "POST",
+		// method: form.method,
 		body: formData
 	});
 
