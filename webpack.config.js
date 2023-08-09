@@ -5,10 +5,10 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
 	entry: {
-		index: './webpage/js/index.js',
+		// index: './webpage/js/index.js',
 		input: './webpage/js/input.js',
 		message: './webpage/js/message.js',
-		post: './webpage/js/post',
+		// post: './webpage/js/post',
 	},
 	output: {
 		path: path.resolve(__dirname, 'dist'),
